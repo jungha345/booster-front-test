@@ -4,130 +4,176 @@ import { useState } from "react";
 
 const FEATURE_CARDS = [
   {
-    number: "01",
+    number: "1",
     title: "과정이 아닌 성과로",
-    subtitle: "광고성과 구매",
-    description: "기획·제작·운영·개선의 복잡한 과정은 잊으세요. 원하는 성과를 구매하면 끝.",
-    link: { label: "광고성과 구매하러 가기", href: "#function" },
-    active: true,
+    description: "고객과 확실하게 만나고 싶다면,\n지금 바로 성과를 구매하세요.",
+    cta: "광고성과 구매",
+    href: "#function",
   },
   {
-    number: "02",
+    number: "2",
     title: "추측이 아닌 데이터로",
-    subtitle: "광고성과 관리",
-    description: "AI 기반 솔루션으로 고객문의부터 결제까지 끊김없이 관리합니다.",
-    link: { label: "광고성과 관리 알아보기", href: "#management" },
-    active: false,
+    description: "광고를 매출로 이어가려면,\n집요한 관리로 기회를 놓치지 마세요.",
+    cta: "광고성과 관리",
+    href: "#management",
   },
   {
-    number: "03",
+    number: "3",
     title: "감이 아닌 전략으로",
-    subtitle: "마케팅 스킬",
-    description: "1,000억 원의 광고 노하우를 담은 마케팅 킷과 교육을 만나보세요.",
-    link: { label: "마케팅 스킬 알아보기", href: "#skill" },
-    active: false,
+    description: "더 이상 감에 의존하지 말고,\n지속 가능한 전략을 세워보세요.",
+    cta: "마케팅 스킬",
+    href: "#skill",
   },
 ] as const;
 
 export function HeroSection() {
+  const [activeCard, setActiveCard] = useState(0);
   const [email, setEmail] = useState("");
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-[#0a1628] via-[#0f2847] to-[#0a1628] overflow-hidden">
-      {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(1,119,251,0.15)_0%,transparent_70%)]" />
+    <section className="relative">
+      {/* Hero Area */}
+      <div className="relative min-h-[calc(100vh-72px)] flex flex-col items-center pt-[119px] lg:pt-[119px] pb-[80px] lg:pb-[0px] px-5 overflow-hidden">
+        {/* Background - light gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f0f7ff] via-white to-white" />
 
-      <div className="relative max-w-[1080px] mx-auto px-5 pt-32 lg:pt-40 pb-16 lg:pb-24">
-        {/* Main headline */}
-        <div className="text-center mb-8 lg:mb-12">
-          <h1 className="text-3xl lg:text-[56px] lg:leading-[1.2] font-extrabold mb-4 lg:mb-6">
-            <span className="bg-gradient-to-r from-[#34d399] via-[#22d3ee] to-[#818cf8] bg-clip-text text-transparent">
-              불확실한 광고,
-            </span>
-            <br />
-            <span className="text-white">
-              이제{" "}
-              <span className="bg-gradient-to-r from-[#60a5fa] to-[#818cf8] bg-clip-text text-transparent">
-                확실한 성과
+        {/* Intro Content */}
+        <div className="relative z-10 w-full max-w-[1160px] mx-auto">
+          {/* Headline */}
+          <div className="text-center mb-[38.8px]">
+            <h1 className="text-[36px] lg:text-[48px] font-[800] leading-[1.3] mb-[40px]">
+              <span className="text-[#111]">불확실한 광고,</span>
+              <br />
+              <span className="bg-gradient-to-r from-[#bffa62] to-[#0177fb] bg-clip-text text-transparent">
+                이제 확실한 성과로
               </span>
-              로
-            </span>
-          </h1>
-          <p className="text-sm lg:text-lg text-white/60 max-w-[500px] mx-auto leading-relaxed">
-            광고는 누구나 하지만, 위픽부스터는 성과를 만듭니다.
-            <br className="hidden lg:block" />
-            기획부터 결제까지, 원하는 성과를 선택하면 끝.
-          </p>
+            </h1>
+            <p className="text-[16px] lg:text-[18px] font-[500] text-[#454f5d] leading-[1.6]">
+              &ldquo;왜 광고비를 써도 결과는 불확실할까?&rdquo;
+              <br />
+              광고비가 곧 결과가 되는 일
+              <br />
+              그 당연함을 이제 우리가 만듭니다.
+            </p>
+          </div>
         </div>
+      </div>
 
-        {/* Email input - mobile */}
-        <div className="lg:hidden mb-10">
-          <div className="flex items-center gap-2 max-w-[340px] mx-auto">
+      {/* Cards Wrap - glassmorphic container */}
+      <div
+        className="relative bg-gradient-to-t from-white from-50% to-[rgba(255,255,255,0.24)] backdrop-blur-[50px] border-t border-l border-r border-[#e0e8f9] rounded-t-[40px] lg:rounded-t-[100px] px-5 pt-[60px] lg:pt-[100px] pb-[80px] lg:pb-[120px] -mt-[100px]"
+      >
+        <div className="max-w-[1080px] mx-auto">
+          {/* Section Text */}
+          <div className="mb-[36px]">
+            <h3 className="text-[24px] lg:text-[30px] font-bold text-[#171819] leading-[1.4] mb-[18.9px]">
+              성과가 일어나는 순간까지
+              <br />
+              빠르고 집요하게
+              <br />
+              위픽부스터가 광고를 만드는 세가지 방식
+            </h3>
+            <p className="text-[16px] lg:text-[18px] font-[500] text-[#454f5d] leading-[1.6]">
+              불확실함에 지친 광고 시장에서
+              <br />
+              확실한 성과를 만듭니다.
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div className="flex flex-col lg:flex-row gap-[20px]">
+            {FEATURE_CARDS.map((card, i) => (
+              <div
+                key={card.number}
+                className={`flex-1 rounded-[20px] p-[4px] transition-all duration-300 cursor-pointer ${
+                  activeCard === i ? "bg-[#dbecfc]" : ""
+                }`}
+                onMouseEnter={() => setActiveCard(i)}
+              >
+                <div
+                  className={`relative rounded-[16px] p-[24px] lg:p-[30px] h-full min-h-[220px] lg:min-h-[246px] transition-all duration-300 ${
+                    activeCard === i
+                      ? "bg-white border border-[#0177fb]"
+                      : "bg-[#fbfcfd] border border-[#f1f2f3]"
+                  }`}
+                >
+                  {/* Number Badge */}
+                  <div
+                    className={`w-[28px] h-[28px] rounded-[5px] flex items-center justify-center mb-[28px] transition-colors duration-300 ${
+                      activeCard === i
+                        ? "bg-[#0177fb]"
+                        : "bg-[rgba(134,142,150,0.19)]"
+                    }`}
+                  >
+                    <span
+                      className={`text-[16px] font-semibold ${
+                        activeCard === i ? "text-white" : "text-[#868e96]"
+                      }`}
+                    >
+                      {card.number}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h4
+                    className={`text-[20px] lg:text-[22px] font-bold mb-[12px] transition-colors duration-300 ${
+                      activeCard === i ? "text-[#0177fb]" : "text-[#171819]"
+                    }`}
+                  >
+                    {card.title}
+                  </h4>
+
+                  {/* Description */}
+                  <p
+                    className={`text-[15px] lg:text-[16px] font-semibold leading-[1.5] mb-[20px] whitespace-pre-line transition-colors duration-300 ${
+                      activeCard === i ? "text-[#454f5d]" : "text-[#868e96]"
+                    }`}
+                  >
+                    {card.description}
+                  </p>
+
+                  {/* CTA */}
+                  <div className="flex items-center gap-1">
+                    <span
+                      className={`text-[16px] font-semibold transition-colors duration-300 ${
+                        activeCard === i ? "text-[#454f5d]" : "text-[#868e96]"
+                      }`}
+                    >
+                      {card.cta}
+                    </span>
+                    <span
+                      className={`text-[16px] font-semibold transition-colors duration-300 ${
+                        activeCard === i ? "text-[#0177fb]" : "text-[#868e96]"
+                      }`}
+                    >
+                      →
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Sticky Email Bar (inside hero area) */}
+      <div className="hidden lg:block fixed bottom-[26px] left-1/2 -translate-x-1/2 z-40 w-full max-w-[960px]">
+        <div className="bg-[#171819] rounded-[14px] px-5 py-2 flex items-center gap-4 shadow-[0_8px_20px_rgba(0,0,0,0.18)]">
+          <p className="text-white text-[14px] font-semibold whitespace-nowrap shrink-0">
+            이메일 입력하고, 상담을 시작해 보세요!
+          </p>
+          <div className="flex items-center gap-2 flex-1">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="이메일을 입력해 주세요"
-              className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white text-sm placeholder-white/40 outline-none focus:border-primary transition-colors"
+              className="flex-1 h-[48px] px-4 bg-white rounded-[8px] text-[14px] text-[#171819] placeholder-[#b0b8c1] outline-none focus:border-primary focus:shadow-[0_0_0_2px_rgba(1,119,251,0.2)] transition-all"
             />
-            <button className="px-4 py-3 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-hover transition-colors">
+            <button className="w-[56px] h-[48px] bg-primary text-white rounded-[8px] text-lg font-bold hover:bg-primary-hover transition-colors flex items-center justify-center shrink-0">
               →
             </button>
           </div>
-        </div>
-
-        {/* Feature Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
-          {FEATURE_CARDS.map((card) => (
-            <div
-              key={card.number}
-              className={`relative rounded-[20px] p-6 lg:p-7 transition-all duration-300 ${
-                card.active
-                  ? "bg-white/10 backdrop-blur-xl border border-primary/50 shadow-[0_0_30px_rgba(1,119,251,0.15)]"
-                  : "bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 hover:border-white/20"
-              }`}
-            >
-              <div className="flex items-center gap-2 mb-4">
-                <span
-                  className={`text-xs font-bold px-2 py-0.5 rounded-md ${
-                    card.active
-                      ? "bg-primary/20 text-primary"
-                      : "bg-white/10 text-white/50"
-                  }`}
-                >
-                  {card.number}
-                </span>
-                <span className="text-xs text-white/50 font-medium">
-                  {card.subtitle}
-                </span>
-              </div>
-              <h3
-                className={`text-lg lg:text-xl font-bold mb-2 ${
-                  card.active ? "text-white" : "text-white/70"
-                }`}
-              >
-                {card.title}
-              </h3>
-              <p
-                className={`text-sm leading-relaxed mb-5 ${
-                  card.active ? "text-white/70" : "text-white/40"
-                }`}
-              >
-                {card.description}
-              </p>
-              <a
-                href={card.link.href}
-                className={`inline-flex items-center text-sm font-semibold transition-colors ${
-                  card.active
-                    ? "text-primary hover:text-primary-hover"
-                    : "text-white/40 hover:text-white/60"
-                }`}
-              >
-                {card.link.label}
-                <span className="ml-1">↗</span>
-              </a>
-            </div>
-          ))}
         </div>
       </div>
     </section>

@@ -1,117 +1,154 @@
 "use client";
 
-import { useState } from "react";
-import { MARKETING_TABS, MARKETING_ITEMS } from "@/lib/constants";
+import { useState, useRef } from "react";
+
+const SKILL_TABS = ["마케팅 키트", "교육·행사", "컨설팅"] as const;
+
+const SKILL_CARDS = [
+  {
+    id: "1",
+    title: "마케팅 몰락에 대비하는 마케팅 성공\n전략은?",
+  },
+  {
+    id: "2",
+    title: "메디콜센터 본부장의 월 신환 5배 콜\n관리 노하우집",
+  },
+  {
+    id: "3",
+    title: "어드레서블 TV 광고가 바꾸는 마케\n팅 생태계",
+  },
+  {
+    id: "4",
+    title: "CPA 마케팅 100억 회사의 CPA 전\n략 5가지",
+  },
+] as const;
 
 export function MarketingSkillTab() {
   const [activeTab, setActiveTab] =
-    useState<(typeof MARKETING_TABS)[number]>("마케팅 킷");
+    useState<(typeof SKILL_TABS)[number]>("마케팅 키트");
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollCards = (dir: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const amount = 286;
+    scrollRef.current.scrollBy({
+      left: dir === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
 
   return (
-    <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
-      {/* Left: Description */}
-      <div className="mb-8 lg:mb-0 lg:w-[440px] lg:shrink-0">
-        <span className="inline-block px-3 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-4">
-          마케팅 스킬
-        </span>
-        <h2 className="text-2xl lg:text-[40px] lg:leading-[1.3] font-bold text-text-dark mb-4">
-          감이 아닌 전략으로
-        </h2>
-        <h3 className="text-xl lg:text-[28px] lg:leading-[1.4] font-bold text-text-dark mb-4">
-          <span className="text-primary">[</span>
-          <span className="text-primary"> 1,000억 원의 광고 노하우 </span>
-          <span className="text-primary">]</span>를
-          <br />
-          지금 바로 내 것으로.
-        </h3>
-        <p className="text-sm lg:text-base text-text-gray leading-relaxed mb-6">
-          마케팅 킷, 교육·이벤트, 전문 컨설팅까지. 현장에서 바로 쓸 수 있는
-          실전 마케팅 스킬을 만나보세요.
-        </p>
-        <a
-          href="#"
-          className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary-hover transition-colors"
-        >
-          마케팅 스킬 더 알아보기 <span className="ml-1">↗</span>
-        </a>
-      </div>
+    <div className="min-h-[1080px] flex items-center justify-center py-[120px] lg:py-0">
+      <div className="max-w-[1080px] w-full mx-auto px-5 flex flex-col lg:flex-row gap-[40px] items-start lg:items-center">
+        {/* Left: Description */}
+        <div className="lg:flex-1 lg:sticky lg:top-0">
+          <div className="inline-block px-[9px] py-[5px] bg-[rgba(1,119,251,0.05)] border border-[rgba(1,119,251,0.15)] rounded-[6px] mb-[30px]">
+            <span className="text-[16px] font-semibold text-[#0177fb] leading-[25.6px]">
+              마케팅 스킬
+            </span>
+          </div>
 
-      {/* Right: Sub-tabs + Cards */}
-      <div className="flex-1 min-w-0">
-        {/* Sub-tabs */}
-        <div className="flex gap-0 border-b border-border mb-6 overflow-x-auto scrollbar-hide">
-          {MARKETING_TABS.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 lg:px-5 py-2.5 text-sm font-medium whitespace-nowrap transition-colors border-b-2 ${
-                activeTab === tab
-                  ? "text-text-dark border-text-dark"
-                  : "text-text-medium border-transparent hover:text-text-gray"
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
+          <h2 className="text-[32px] lg:text-[40px] font-[800] leading-[1.4] mb-[20px]">
+            <span className="text-[#0177fb]">감</span>
+            <span className="text-[#171819]">이 아닌 </span>
+            <span className="text-[#0177fb]">전략</span>
+            <span className="text-[#171819]">으로</span>
+          </h2>
+
+          <h3 className="text-[24px] lg:text-[30px] font-semibold text-[#171819] leading-[1.4] mb-[20px]">
+            [ 마케팅 스킬 ]로
+            <br />
+            지속 가능한 구조를 만드세요.
+          </h3>
+
+          <p className="text-[15px] lg:text-[17px] font-[500] text-[#454f5d] leading-[1.6] mb-[40px]">
+            이제 감에 의존하지 말고
+            <br />
+            성과가 쌓이는 전략을 설계하세요.
+            <br />
+            필요없는 과정은 비우고
+            <br />꼭 필요한 전략만 남겼습니다.
+          </p>
+
+          <a
+            href="#"
+            className="inline-flex items-center text-[16px] font-bold text-[#171819] border-b border-transparent hover:border-[#171819] transition-all"
+          >
+            마케팅 스킬 더 알아보기 ↗
+          </a>
         </div>
 
-        {/* Card Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {MARKETING_ITEMS.map((item) => (
-            <a
-              key={item.id}
-              href="#"
-              className="group block rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow"
+        {/* Right: Sub-tabs + Card Grid */}
+        <div className="w-full lg:w-[600px] shrink-0">
+          {/* Sub-tabs - underline style */}
+          <div className="flex mb-[24px]">
+            {SKILL_TABS.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-[22px] py-[8px] pb-[9px] text-[15px] font-semibold whitespace-nowrap transition-colors border-b ${
+                  activeTab === tab
+                    ? "text-[#0177fb] border-[#0177fb] bg-white"
+                    : "text-[#868e96] border-[#eaeaea] hover:text-[#454f5d]"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          {/* Horizontal Scrollable Card Grid */}
+          <div className="relative">
+            <div
+              ref={scrollRef}
+              className="flex gap-[16px] overflow-x-auto scrollbar-hide pb-4"
             >
-              {/* Thumbnail placeholder */}
-              <div className="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 relative">
-                {item.tag && (
-                  <span
-                    className={`absolute top-3 left-3 px-2 py-0.5 text-xs font-bold text-white rounded ${
-                      item.tag === "HOT"
-                        ? "bg-red-500"
-                        : item.tag === "BEST"
-                          ? "bg-primary"
-                          : "bg-green-500"
-                    }`}
-                  >
-                    {item.tag}
-                  </span>
-                )}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-lg bg-white/80 flex items-center justify-center shadow-sm">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#868e96"
-                      strokeWidth="1.5"
-                    >
-                      <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
-                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
-                    </svg>
+              {SKILL_CARDS.map((card) => (
+                <a
+                  key={card.id}
+                  href="#"
+                  className="flex-shrink-0 w-[260px] lg:w-[270px] bg-white rounded-[12px] overflow-hidden group"
+                >
+                  {/* Thumbnail */}
+                  <div className="aspect-[270/202] bg-gradient-to-br from-gray-100 to-gray-200 relative">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-12 h-12 bg-white/80 rounded-lg flex items-center justify-center shadow-sm">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4c9d0" strokeWidth="1.5">
+                          <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              {/* Info */}
-              <div className="p-4">
-                <h4 className="text-sm font-semibold text-text-dark mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                  {item.title}
-                </h4>
-                <div className="flex items-center gap-2">
-                  <span className="text-base font-bold text-primary">
-                    {item.price}
-                  </span>
-                  {"originalPrice" in item && item.originalPrice && (
-                    <span className="text-xs text-text-light line-through">
-                      {item.originalPrice}
+                  {/* Body */}
+                  <div className="p-[20px] flex flex-col gap-[10px]">
+                    <p className="text-[16px] font-semibold text-[#171819] leading-[1.5] whitespace-pre-line group-hover:text-[#0177fb] transition-colors">
+                      {card.title}
+                    </p>
+                    <span className="text-[15px] font-semibold text-[#0177fb]">
+                      자세히 보기 ↗
                     </span>
-                  )}
-                </div>
-              </div>
-            </a>
-          ))}
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {/* Scroll Buttons */}
+            <div className="flex gap-[14px] justify-center mt-[20px]">
+              <button
+                onClick={() => scrollCards("left")}
+                className="w-[40px] h-[40px] rounded-[20px] bg-[#f1f4f9] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.08)] flex items-center justify-center text-[18px] font-bold text-[#454f5d]"
+              >
+                ←
+              </button>
+              <button
+                onClick={() => scrollCards("right")}
+                className="w-[40px] h-[40px] rounded-[20px] bg-[#f1f4f9] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.08)] flex items-center justify-center text-[18px] font-bold text-[#454f5d]"
+              >
+                →
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
