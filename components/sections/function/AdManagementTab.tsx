@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 const SOLUTION_ITEMS = [
   {
@@ -26,16 +26,55 @@ const SOLUTION_ITEMS = [
   },
 ] as const;
 
+const AUTO_ADVANCE_MS = 4000;
+
 export function AdManagementTab() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const [progressKey, setProgressKey] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const totalSlides = SOLUTION_ITEMS.length;
 
-  const goTo = (dir: "prev" | "next") => {
-    setCurrentSlide((prev) => {
-      const next = dir === "prev" ? prev - 1 : prev + 1;
-      return Math.max(0, Math.min(SOLUTION_ITEMS.length - 1, next));
-    });
-  };
+  const goTo = useCallback(
+    (index: number) => {
+      setCurrentSlide(((index % totalSlides) + totalSlides) % totalSlides);
+      setProgressKey((k) => k + 1);
+    },
+    [totalSlides]
+  );
+
+  const goNext = useCallback(() => {
+    goTo(currentSlide + 1);
+  }, [currentSlide, goTo]);
+
+  const goPrev = useCallback(() => {
+    goTo(currentSlide - 1);
+  }, [currentSlide, goTo]);
+
+  // Auto-advance carousel every 4 seconds
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % totalSlides);
+      setProgressKey((k) => k + 1);
+    }, AUTO_ADVANCE_MS);
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [totalSlides]);
+
+  // Reset timer on manual navigation
+  const handleManualNav = useCallback(
+    (dir: "prev" | "next") => {
+      if (timerRef.current) clearInterval(timerRef.current);
+      if (dir === "prev") goPrev();
+      else goNext();
+      timerRef.current = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % totalSlides);
+        setProgressKey((k) => k + 1);
+      }, AUTO_ADVANCE_MS);
+    },
+    [goPrev, goNext, totalSlides]
+  );
 
   return (
     <div className="min-h-[1080px] flex items-center justify-center py-[60px] overflow-hidden">
@@ -81,10 +120,40 @@ export function AdManagementTab() {
 
         {/* Right: Solution Carousel */}
         <div className="w-full lg:w-[600px] shrink-0 relative">
+          {/* Progress indicators */}
+          <div className="flex gap-[8px] mb-[16px]">
+            {SOLUTION_ITEMS.map((_, i) => (
+              <div
+                key={i}
+                className="flex-1 h-[3px] bg-[#e5e8eb] rounded-full overflow-hidden cursor-pointer"
+                onClick={() => {
+                  if (timerRef.current) clearInterval(timerRef.current);
+                  goTo(i);
+                  timerRef.current = setInterval(() => {
+                    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+                    setProgressKey((k) => k + 1);
+                  }, AUTO_ADVANCE_MS);
+                }}
+              >
+                {currentSlide === i && (
+                  <div
+                    key={progressKey}
+                    className="h-full bg-[#0177fb] rounded-full"
+                    style={{
+                      animation: `progress-line ${AUTO_ADVANCE_MS}ms linear forwards`,
+                    }}
+                  />
+                )}
+                {currentSlide > i && (
+                  <div className="h-full w-full bg-[#0177fb] rounded-full" />
+                )}
+              </div>
+            ))}
+          </div>
+
           {/* Carousel Track */}
           <div className="relative h-[467px] overflow-hidden">
             <div
-              ref={trackRef}
               className="flex transition-transform duration-500 ease-in-out absolute inset-0"
               style={{
                 transform: `translateX(-${currentSlide * 100}%)`,
@@ -142,15 +211,15 @@ export function AdManagementTab() {
 
           {/* Prev/Next buttons */}
           <button
-            onClick={() => goTo("prev")}
-            className="absolute left-[-10px] top-1/2 -translate-y-1/2 w-[44px] h-[44px] rounded-[22px] bg-[rgba(255,255,255,0.05)] backdrop-blur-[0.5px] border border-[#f1f2f3] shadow-[0px_0px_8px_0px_rgba(0,0,0,0.04)] flex items-center justify-center text-[32px] text-[#171819] leading-[20px] z-10"
+            onClick={() => handleManualNav("prev")}
+            className="absolute left-[-10px] top-1/2 -translate-y-1/2 w-[44px] h-[44px] rounded-[22px] bg-[rgba(255,255,255,0.95)] backdrop-blur-[0.5px] border border-[#f1f2f3] shadow-[0px_0px_8px_0px_rgba(0,0,0,0.04)] flex items-center justify-center text-[32px] text-[#171819] leading-[20px] z-10 hover:bg-white hover:shadow-[0px_2px_12px_0px_rgba(0,0,0,0.08)] transition-all"
             aria-label="이전"
           >
             ‹
           </button>
           <button
-            onClick={() => goTo("next")}
-            className="absolute right-[-10px] top-1/2 -translate-y-1/2 w-[44px] h-[44px] rounded-[22px] bg-[rgba(255,255,255,0.05)] backdrop-blur-[0.5px] border border-[#f1f2f3] shadow-[0px_0px_8px_0px_rgba(0,0,0,0.04)] flex items-center justify-center text-[32px] text-[#171819] leading-[20px] z-10"
+            onClick={() => handleManualNav("next")}
+            className="absolute right-[-10px] top-1/2 -translate-y-1/2 w-[44px] h-[44px] rounded-[22px] bg-[rgba(255,255,255,0.95)] backdrop-blur-[0.5px] border border-[#f1f2f3] shadow-[0px_0px_8px_0px_rgba(0,0,0,0.04)] flex items-center justify-center text-[32px] text-[#171819] leading-[20px] z-10 hover:bg-white hover:shadow-[0px_2px_12px_0px_rgba(0,0,0,0.08)] transition-all"
             aria-label="다음"
           >
             ›

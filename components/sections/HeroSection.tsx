@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const FEATURE_CARDS = [
   {
@@ -29,6 +29,27 @@ const FEATURE_CARDS = [
 export function HeroSection() {
   const [activeCard, setActiveCard] = useState(0);
   const [email, setEmail] = useState("");
+  const [cardsVisible, setCardsVisible] = useState(false);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  // Cards-wrap entrance animation via IntersectionObserver
+  useEffect(() => {
+    const el = cardsRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // 800ms delay like original
+          setTimeout(() => setCardsVisible(true), 800);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="relative">
@@ -59,9 +80,12 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Cards Wrap - glassmorphic container */}
+      {/* Cards Wrap - glassmorphic container with entrance animation */}
       <div
-        className="relative bg-gradient-to-t from-white from-50% to-[rgba(255,255,255,0.24)] backdrop-blur-[50px] border-t border-l border-r border-[#e0e8f9] rounded-t-[40px] lg:rounded-t-[100px] px-5 pt-[60px] lg:pt-[100px] pb-[80px] lg:pb-[120px] -mt-[100px]"
+        ref={cardsRef}
+        className={`cards-wrap relative bg-gradient-to-t from-white from-50% to-[rgba(255,255,255,0.24)] backdrop-blur-[50px] border-t border-l border-r border-[#e0e8f9] rounded-t-[40px] lg:rounded-t-[100px] px-5 pt-[60px] lg:pt-[100px] pb-[80px] lg:pb-[120px] -mt-[100px] ${
+          cardsVisible ? "show" : ""
+        }`}
       >
         <div className="max-w-[1080px] mx-auto">
           {/* Section Text */}
@@ -85,13 +109,15 @@ export function HeroSection() {
             {FEATURE_CARDS.map((card, i) => (
               <div
                 key={card.number}
-                className={`flex-1 rounded-[20px] p-[4px] transition-all duration-300 cursor-pointer ${
-                  activeCard === i ? "bg-[#dbecfc]" : ""
-                }`}
+                className="flex-1 rounded-[20px] p-[4px] transition-all duration-400 cursor-pointer group"
+                style={{
+                  background: activeCard === i ? "#dbecfc" : "transparent",
+                  transform: activeCard === i ? "translateY(-4px)" : "translateY(0)",
+                }}
                 onMouseEnter={() => setActiveCard(i)}
               >
                 <div
-                  className={`relative rounded-[16px] p-[24px] lg:p-[30px] h-full min-h-[220px] lg:min-h-[246px] transition-all duration-300 ${
+                  className={`relative rounded-[16px] p-[24px] lg:p-[30px] h-full min-h-[220px] lg:min-h-[246px] transition-all duration-400 ${
                     activeCard === i
                       ? "bg-white border border-[#0177fb]"
                       : "bg-[#fbfcfd] border border-[#f1f2f3]"
@@ -99,7 +125,7 @@ export function HeroSection() {
                 >
                   {/* Number Badge */}
                   <div
-                    className={`w-[28px] h-[28px] rounded-[5px] flex items-center justify-center mb-[28px] transition-colors duration-300 ${
+                    className={`w-[28px] h-[28px] rounded-[5px] flex items-center justify-center mb-[28px] transition-colors duration-400 ${
                       activeCard === i
                         ? "bg-[#0177fb]"
                         : "bg-[rgba(134,142,150,0.19)]"
@@ -116,7 +142,7 @@ export function HeroSection() {
 
                   {/* Title */}
                   <h4
-                    className={`text-[20px] lg:text-[22px] font-bold mb-[12px] transition-colors duration-300 ${
+                    className={`text-[20px] lg:text-[22px] font-bold mb-[12px] transition-colors duration-400 ${
                       activeCard === i ? "text-[#0177fb]" : "text-[#171819]"
                     }`}
                   >
@@ -125,26 +151,29 @@ export function HeroSection() {
 
                   {/* Description */}
                   <p
-                    className={`text-[15px] lg:text-[16px] font-semibold leading-[1.5] mb-[20px] whitespace-pre-line transition-colors duration-300 ${
+                    className={`text-[15px] lg:text-[16px] font-semibold leading-[1.5] mb-[20px] whitespace-pre-line transition-colors duration-400 ${
                       activeCard === i ? "text-[#454f5d]" : "text-[#868e96]"
                     }`}
                   >
                     {card.description}
                   </p>
 
-                  {/* CTA */}
+                  {/* CTA with arrow animation */}
                   <div className="flex items-center gap-1">
                     <span
-                      className={`text-[16px] font-semibold transition-colors duration-300 ${
+                      className={`text-[16px] font-semibold transition-colors duration-400 ${
                         activeCard === i ? "text-[#454f5d]" : "text-[#868e96]"
                       }`}
                     >
                       {card.cta}
                     </span>
                     <span
-                      className={`text-[16px] font-semibold transition-colors duration-300 ${
-                        activeCard === i ? "text-[#0177fb]" : "text-[#868e96]"
-                      }`}
+                      className="text-[16px] font-semibold transition-all duration-400"
+                      style={{
+                        color: activeCard === i ? "#0177fb" : "#868e96",
+                        transform: activeCard === i ? "translateX(12px)" : "translateX(0)",
+                        display: "inline-block",
+                      }}
                     >
                       →
                     </span>
@@ -156,9 +185,9 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Desktop Sticky Email Bar (inside hero area) */}
-      <div className="hidden lg:block fixed bottom-[26px] left-1/2 -translate-x-1/2 z-40 w-full max-w-[960px]">
-        <div className="bg-[#171819] rounded-[14px] px-5 py-2 flex items-center gap-4 shadow-[0_8px_20px_rgba(0,0,0,0.18)]">
+      {/* Desktop Sticky Email Bar */}
+      <div className="hidden lg:block fixed bottom-[26px] left-1/2 -translate-x-1/2 z-40 w-full max-w-[960px] px-5">
+        <div className="bg-[#171819] rounded-[14px] px-5 py-2 flex items-center gap-4 shadow-[0_8px_20px_rgba(0,0,0,0.18)] hover:-translate-y-[2px] transition-transform duration-300">
           <p className="text-white text-[14px] font-semibold whitespace-nowrap shrink-0">
             이메일 입력하고, 상담을 시작해 보세요!
           </p>
@@ -168,7 +197,7 @@ export function HeroSection() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="이메일을 입력해 주세요"
-              className="flex-1 h-[48px] px-4 bg-white rounded-[8px] text-[14px] text-[#171819] placeholder-[#b0b8c1] outline-none focus:border-primary focus:shadow-[0_0_0_2px_rgba(1,119,251,0.2)] transition-all"
+              className="email-input flex-1 h-[48px] px-4 bg-white rounded-[8px] text-[14px] text-[#171819] placeholder-[#b0b8c1] outline-none transition-all border border-transparent"
             />
             <button className="w-[56px] h-[48px] bg-primary text-white rounded-[8px] text-lg font-bold hover:bg-primary-hover transition-colors flex items-center justify-center shrink-0">
               →

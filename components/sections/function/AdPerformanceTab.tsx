@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const INDUSTRY_TABS = ["병원", "창업", "채용", "렌탈", "법률", "다른업종"] as const;
 
@@ -10,9 +10,31 @@ const PRODUCT_ITEMS = [
   { id: "3", category: "피부과", subcategory: "눈밑지방재배치", price: "49,200원" },
 ] as const;
 
+const ROLLING_TEXTS = [
+  "렌트 계약 15건",
+  "성형외과 상담 20건",
+  "피부과 예약 30건",
+  "치과 상담 25건",
+  "한의원 예약 18건",
+  "창업 문의 40건",
+  "채용 지원 50건",
+  "법률 상담 12건",
+] as const;
+
 export function AdPerformanceTab() {
   const [activeIndustry, setActiveIndustry] =
     useState<(typeof INDUSTRY_TABS)[number]>("병원");
+  const [rollingIndex, setRollingIndex] = useState(0);
+  const [fadeKey, setFadeKey] = useState(0);
+
+  // Rolling text animation - cycle every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRollingIndex((prev) => (prev + 1) % ROLLING_TEXTS.length);
+      setFadeKey((prev) => prev + 1);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="min-h-[1080px] flex items-center justify-center py-[120px] lg:py-0">
@@ -34,9 +56,17 @@ export function AdPerformanceTab() {
             <span className="text-[#171819]">로</span>
           </h2>
 
-          {/* Subtitle */}
+          {/* Subtitle with rolling text */}
           <h3 className="text-[24px] lg:text-[30px] font-semibold text-[#171819] leading-[1.4] mb-[20px]">
-            [ 렌트 계약 15건 ] 까지
+            [&nbsp;
+            <span
+              key={fadeKey}
+              className="inline-block text-[#0177fb]"
+              style={{ animation: "fade-in 0.4s ease" }}
+            >
+              {ROLLING_TEXTS[rollingIndex]}
+            </span>
+            &nbsp;] 까지
             <br />
             클릭 한 번이면 충분합니다.
           </h3>

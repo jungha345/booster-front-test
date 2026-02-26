@@ -40,9 +40,96 @@ body {
 /* Logo slider animations */
 @keyframes scroll-left {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-33.3333%); }
 }
 @keyframes scroll-right {
-  from { transform: translateX(-50%); }
+  from { transform: translateX(-33.3333%); }
   to { transform: translateX(0); }
+}
+
+/* Rolling text fade-in */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cards-wrap entrance */
+.cards-wrap {
+  opacity: 0;
+  transform: translateY(140px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.cards-wrap.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Progress line animation for carousel */
+@keyframes progress-line {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* FAQ accordion animation using grid */
+.faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-content.open {
+  grid-template-rows: 1fr;
+}
+.faq-content > div {
+  overflow: hidden;
+}
+
+/* FAQ toggle icon */
+.faq-toggle {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.faq-toggle::before,
+.faq-toggle::after {
+  content: "";
+  position: absolute;
+  background: #868e96;
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 1px;
+}
+.faq-toggle::before {
+  top: 50%;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  transform: translateY(-50%);
+}
+.faq-toggle::after {
+  left: 50%;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  transform: translateX(-50%);
+}
+.faq-toggle.open::after {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+/* Sticky email bar focus ring */
+.email-input:focus {
+  box-shadow: 0 0 0 4px rgba(1, 119, 251, 0.18);
+  border-color: #0177fb;
+}
+
+/* Function tab nav visibility */
+.function-tab-nav {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.function-tab-nav.hidden-nav {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
 }

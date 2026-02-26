@@ -27,16 +27,16 @@ export function CtaSection() {
           지금 바로 업종을 선택하고, 확실한 성과를 경험해 보세요.
         </p>
 
-        {/* Industry Pills */}
+        {/* Industry Pills - original: border-radius 12px, height 50px, font-size 20px */}
         <div className="flex flex-wrap justify-center gap-[12px] max-w-[700px] mx-auto">
           {CTA_INDUSTRIES.map((industry) => (
             <a
               key={industry.label}
               href="#"
-              className={`inline-flex items-center gap-[8px] px-[20px] py-[10px] rounded-full text-[14px] font-[500] transition-all ${
+              className={`inline-flex items-center gap-[8px] rounded-[12px] text-[16px] lg:text-[20px] font-[500] transition-all ${
                 industry.highlighted
-                  ? "bg-[#0177fb] text-white hover:bg-[#0062d6]"
-                  : "bg-transparent border border-[rgba(255,255,255,0.16)] text-white/80 hover:bg-white/10 hover:border-white/30"
+                  ? "bg-[#0177fb] text-white hover:bg-[#0062d6] px-[24px] lg:px-[28px] h-[50px] lg:h-[58px]"
+                  : "bg-transparent border border-[rgba(255,255,255,0.16)] text-white/80 hover:bg-[rgba(255,255,255,0.07)] hover:border-white/30 px-[20px] lg:px-[24px] h-[44px] lg:h-[50px]"
               }`}
             >
               {industry.label}

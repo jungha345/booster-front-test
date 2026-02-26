@@ -31,6 +31,9 @@ function LogoRow({
   direction: "left" | "right";
   speed: number;
 }) {
+  // Triple the logos for seamless infinite scroll
+  const tripled = [...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS];
+
   return (
     <div className="overflow-hidden">
       <div
@@ -39,7 +42,7 @@ function LogoRow({
           animation: `scroll-${direction} ${speed}s linear infinite`,
         }}
       >
-        {[...PARTNER_LOGOS, ...PARTNER_LOGOS].map((logo, i) => (
+        {tripled.map((logo, i) => (
           <div
             key={`${logo.id}-${i}`}
             className="flex-shrink-0 w-[120px] lg:w-[150px] h-[48px] lg:h-[56px] bg-white rounded-[8px] border border-[#f1f2f3] flex items-center justify-center"
@@ -67,12 +70,12 @@ export function TrustedPartnersSection() {
         </h2>
       </div>
 
-      {/* Logo Slider - 4 rows */}
+      {/* Logo Slider - 4 rows, alternating directions, 60s duration */}
       <div className="space-y-[12px] lg:space-y-[16px] mb-[60px] lg:mb-[80px]">
-        <LogoRow direction="left" speed={35} />
-        <LogoRow direction="right" speed={40} />
-        <LogoRow direction="left" speed={30} />
-        <LogoRow direction="right" speed={38} />
+        <LogoRow direction="left" speed={60} />
+        <LogoRow direction="right" speed={60} />
+        <LogoRow direction="left" speed={60} />
+        <LogoRow direction="right" speed={60} />
       </div>
 
       {/* Stats */}

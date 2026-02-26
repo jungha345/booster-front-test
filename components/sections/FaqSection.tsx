@@ -49,44 +49,38 @@ export function FaqSection() {
           {/* Right: Accordion */}
           <div className="flex-1">
             <div className="space-y-[12px]">
-              {FAQ_ITEMS.map((item, i) => (
-                <div
-                  key={i}
-                  className="rounded-[14px] border border-[#f1f2f3] overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
-                >
-                  <button
-                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                    className="flex items-center w-full px-[20px] py-[16px] text-left gap-[12px]"
-                  >
-                    <span className="flex-shrink-0 w-[28px] h-[28px] rounded-full bg-[#0177fb] text-white text-[12px] font-bold flex items-center justify-center">
-                      Q
-                    </span>
-                    <span className="flex-1 text-[14px] lg:text-[16px] font-semibold text-[#171819] leading-[1.5]">
-                      {item.question}
-                    </span>
-                    <span
-                      className={`flex-shrink-0 text-[20px] text-[#868e96] transition-transform duration-300 ${
-                        openIndex === i ? "rotate-45" : ""
-                      }`}
-                    >
-                      +
-                    </span>
-                  </button>
+              {FAQ_ITEMS.map((item, i) => {
+                const isOpen = openIndex === i;
+                return (
                   <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      openIndex === i
-                        ? "max-h-[300px] opacity-100"
-                        : "max-h-0 opacity-0"
-                    }`}
+                    key={i}
+                    className="rounded-[14px] border border-[#f1f2f3] overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
                   >
-                    <div className="px-[20px] pb-[20px] pl-[60px]">
-                      <p className="text-[14px] text-[#454f5d] font-[500] leading-[1.7]">
-                        {item.answer}
-                      </p>
+                    <button
+                      onClick={() => setOpenIndex(isOpen ? null : i)}
+                      className="flex items-center w-full px-[20px] py-[16px] text-left gap-[12px]"
+                    >
+                      <span className="flex-shrink-0 w-[28px] h-[28px] rounded-full bg-[#0177fb] text-white text-[12px] font-bold flex items-center justify-center">
+                        Q
+                      </span>
+                      <span className="flex-1 text-[14px] lg:text-[16px] font-semibold text-[#171819] leading-[1.5]">
+                        {item.question}
+                      </span>
+                      <span className={`faq-toggle ${isOpen ? "open" : ""}`} />
+                    </button>
+                    {/* CSS grid animation for smooth open/close */}
+                    <div className={`faq-content ${isOpen ? "open" : ""}`}>
+                      <div>
+                        <div className="px-[20px] pb-[20px] pl-[60px]">
+                          <p className="text-[14px] text-[#454f5d] font-[500] leading-[1.7]">
+                            {item.answer}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
