@@ -5,18 +5,18 @@ import { useState, useEffect, useCallback } from "react";
 const SLIDES = [
   {
     id: 1,
-    before: "광고비만 나가고 성과는 불확실한 상태",
-    after: "성과가 발생할 때만 비용 지불",
+    webImg: "https://cdn.imweb.me/thumbnail/20250829/55f666fae661e.png",
+    moImg: "https://cdn.imweb.me/thumbnail/20250902/32412ad59669c.png",
   },
   {
     id: 2,
-    before: "복잡한 기획·제작·운영 과정의 반복",
-    after: "원하는 성과를 선택하고 구매하면 끝",
+    webImg: "https://cdn.imweb.me/thumbnail/20250829/3641d8503e24d.png",
+    moImg: "https://cdn.imweb.me/thumbnail/20250902/f1d6b145eb9c6.png",
   },
   {
     id: 3,
-    before: "고객 응대와 관리를 직접 해야 하는 부담",
-    after: "AI 솔루션으로 자동 응대 & 관리",
+    webImg: "https://cdn.imweb.me/thumbnail/20250922/40c694d6dc386.png",
+    moImg: "https://cdn.imweb.me/thumbnail/20250902/569e1f336c615.png",
   },
 ] as const;
 
@@ -27,7 +27,6 @@ export function BoostrollSection() {
     setCurrentSlide(index);
   }, []);
 
-  // Auto-rotate every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
@@ -36,20 +35,16 @@ export function BoostrollSection() {
   }, []);
 
   return (
-    <section className="py-[60px] lg:py-[100px] bg-[#f5f7fa]">
+    <section className="py-[80px] lg:py-[100px] bg-[#f5f7fa]">
       <div className="max-w-[1080px] mx-auto px-5">
-        {/* Title */}
         <h2 className="text-[22px] lg:text-[36px] font-[800] text-[#171819] text-center leading-[1.4] mb-[40px] lg:mb-[60px]">
           불편하고 불안했던 광고는 이제 그만
           <br />
           위픽부스터에서{" "}
-          <span className="lg:hidden">
-            <br />
-          </span>
+          <span className="lg:hidden"><br /></span>
           확실한 성과만 경험하세요
         </h2>
 
-        {/* Carousel */}
         <div className="max-w-[900px] mx-auto">
           {/* Labels */}
           <div className="flex mb-[16px]">
@@ -73,20 +68,18 @@ export function BoostrollSection() {
             >
               {SLIDES.map((slide) => (
                 <div key={slide.id} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-2 min-h-[200px] lg:min-h-[280px]">
-                    {/* Before */}
-                    <div className="p-[24px] lg:p-[40px] flex items-center justify-center border-r border-[#f1f2f3] bg-[#fafafa]">
-                      <p className="text-[15px] lg:text-[20px] font-[600] text-[#868E96] text-center leading-[1.5]">
-                        {slide.before}
-                      </p>
-                    </div>
-                    {/* After */}
-                    <div className="p-[24px] lg:p-[40px] flex items-center justify-center">
-                      <p className="text-[15px] lg:text-[20px] font-[700] text-[#0177fb] text-center leading-[1.5]">
-                        {slide.after}
-                      </p>
-                    </div>
-                  </div>
+                  {/* Desktop */}
+                  <img
+                    src={slide.webImg}
+                    alt={`배너 ${slide.id}`}
+                    className="hidden lg:block w-full"
+                  />
+                  {/* Mobile */}
+                  <img
+                    src={slide.moImg}
+                    alt={`배너 ${slide.id}`}
+                    className="lg:hidden w-full"
+                  />
                 </div>
               ))}
             </div>
@@ -98,10 +91,10 @@ export function BoostrollSection() {
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`w-[10px] h-[10px] rounded-full transition-all duration-300 ${
+                className={`h-[10px] rounded-full transition-all duration-300 ${
                   currentSlide === i
                     ? "bg-[#0177fb] w-[24px]"
-                    : "bg-[#d4d4d4] hover:bg-[#b0b8c1]"
+                    : "bg-[#d4d4d4] w-[10px] hover:bg-[#b0b8c1]"
                 }`}
                 aria-label={`슬라이드 ${i + 1}`}
               />
