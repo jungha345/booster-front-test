@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 const NAV_ITEMS = [
-  { label: "광고성과구매", href: "#function" },
+  { label: "광고성과구매", href: "/ads" },
   { label: "광고성과관리", href: "#management" },
   { label: "마케팅 스킬", href: "#skill" },
   { label: "인사이트", href: "#insights" },
