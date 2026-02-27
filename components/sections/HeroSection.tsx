@@ -61,7 +61,7 @@ export function HeroSection() {
         {/* Intro Content */}
         <div className="relative z-10 w-full max-w-[1160px] mx-auto">
           {/* Headline */}
-          <div className="text-center mb-[38.8px]">
+          <div className="text-center mb-[38.8px] mt-[100px]">
             <h1 className="text-[36px] lg:text-[48px] font-[800] leading-[1.3] mb-[40px]">
               <span className="text-[#111]">불확실한 광고,</span>
               <br />
