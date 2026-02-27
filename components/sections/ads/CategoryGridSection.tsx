@@ -3,7 +3,7 @@ import Image from "next/image";
 const CATEGORIES = [
   {
     name: "병의원",
-    href: "/ads/clinic",
+    href: "/industry/clinic",
     iconDefault: "https://cdn.imweb.me/thumbnail/20250908/7470e8dcc4d02.png",
     iconHover: "https://cdn.imweb.me/thumbnail/20250908/ea57ff11bbeb7.png",
     pills: [
@@ -13,7 +13,7 @@ const CATEGORIES = [
   },
   {
     name: "창업",
-    href: "/ads/startup",
+    href: "/industry/startup",
     iconDefault: "https://cdn.imweb.me/thumbnail/20250908/4afecf748bf26.png",
     iconHover: "https://cdn.imweb.me/thumbnail/20250908/407ad7f7ca9f2.png",
     pills: [
@@ -23,7 +23,7 @@ const CATEGORIES = [
   },
   {
     name: "렌탈",
-    href: "/ads/rental",
+    href: "/industry/rental",
     iconDefault: "https://cdn.imweb.me/thumbnail/20250908/90ef050cd5a78.png",
     iconHover: "https://cdn.imweb.me/thumbnail/20250908/04c1ffa8ca634.png",
     pills: [
@@ -33,7 +33,7 @@ const CATEGORIES = [
   },
   {
     name: "법률",
-    href: "/ads/law",
+    href: "/industry/law",
     iconDefault: "https://cdn.imweb.me/thumbnail/20250908/466f78f75b355.png",
     iconHover: "https://cdn.imweb.me/thumbnail/20250908/139b8765e5735.png",
     pills: [
@@ -43,7 +43,7 @@ const CATEGORIES = [
   },
   {
     name: "보험",
-    href: "/ads/insurance",
+    href: "/industry/insurance",
     iconDefault: "https://cdn.imweb.me/thumbnail/20250908/d113243974f1a.png",
     iconHover: "https://cdn.imweb.me/thumbnail/20250908/89934cbf67c46.png",
     pills: [
@@ -53,7 +53,7 @@ const CATEGORIES = [
   },
   {
     name: "통신",
-    href: "/ads/telecom",
+    href: "/industry/telecom",
     iconDefault: "https://cdn.imweb.me/thumbnail/20250908/3308649b29e57.png",
     iconHover: "https://cdn.imweb.me/thumbnail/20250908/d12f12ba563ae.png",
     pills: [
@@ -63,7 +63,7 @@ const CATEGORIES = [
   },
   {
     name: "B2B",
-    href: "/ads/b2b",
+    href: "/industry/b2b",
     iconDefault: "https://cdn.imweb.me/thumbnail/20250908/1f6e68ba2aa96.png",
     iconHover: "https://cdn.imweb.me/thumbnail/20250908/be9de20d8c567.png",
     pills: [
@@ -73,7 +73,7 @@ const CATEGORIES = [
   },
   {
     name: "채용",
-    href: "/ads/recruit",
+    href: "/industry/recruit",
     iconDefault: "https://cdn.imweb.me/thumbnail/20250908/b716e1172847a.png",
     iconHover: "https://cdn.imweb.me/thumbnail/20250908/9d29b149fe00f.png",
     pills: [
@@ -83,7 +83,7 @@ const CATEGORIES = [
   },
   {
     name: "분양",
-    href: "/ads/distribution",
+    href: "/industry/distribution",
     iconDefault: "https://cdn.imweb.me/thumbnail/20250908/4858cc8c66a14.png",
     iconHover: "https://cdn.imweb.me/thumbnail/20250908/7e092bddda2ad.png",
     pills: [
