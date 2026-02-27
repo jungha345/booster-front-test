@@ -52,11 +52,12 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative">
+    <section className="relative bg-contain bg-center bg-no-repeat"
+             style={{ backgroundImage: "url('https://cdn.imweb.me/thumbnail/20251023/c46b44d68b612.png')" }}>
       {/* Hero Area */}
-      <div className="relative min-h-[calc(100vh-72px)] flex flex-col items-center pt-[119px] lg:pt-[119px] pb-[80px] lg:pb-[0px] px-5 overflow-hidden">
+      <div className="relative min-h-[calc(100vh-290px)] flex flex-col items-center pt-[119px] lg:pt-[119px] pb-[80px] lg:pb-[0px] px-5 overflow-hidden">
         {/* Background - light gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f0f7ff] via-white to-white" />
+        <div className="absolute inset-0 via-white to-white" />
 
         {/* Intro Content */}
         <div className="relative z-10 w-full max-w-[1160px] mx-auto">
