@@ -81,8 +81,8 @@ export function IndustryProductGrid({
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-[12px] lg:gap-[16px]">
           {filtered.map((product) => (
             <a
-              key={product.name}
-              href="#"
+              key={product.id}
+              href={`/product/${product.id}`}
               className="group bg-white rounded-[12px] border border-[#f1f2f3] overflow-hidden hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:-translate-y-[2px] transition-all duration-300"
             >
               <div className="aspect-[4/3] bg-[#f5f7fa] overflow-hidden">

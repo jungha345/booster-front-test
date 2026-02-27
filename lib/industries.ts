@@ -33,6 +33,7 @@ export interface IndustrySubCategory {
 }
 
 export interface IndustryProduct {
+  id: string;
   name: string;
   price: number;
   image: string;
@@ -103,50 +104,50 @@ const startup: IndustryData = {
 
   products: [
     // ── F&B ──
-    { name: "패스트푸드", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/39dc52dde8dc2.png?w=500", category: "fnb" },
-    { name: "디저트·카페", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/10d2ff07316a7.png?w=500", category: "fnb" },
-    { name: "비건·건강식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/88af3c3edd787.png?w=500", category: "fnb" },
-    { name: "아시안 푸드", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/8ab3728b880d1.png?w=500", category: "fnb" },
-    { name: "주점·펍", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/797be1c3c8c3c.png?w=500", category: "fnb" },
-    { name: "분식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/c14f1bd5ff3b9.png?w=500", category: "fnb" },
-    { name: "양식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/b398f02bdaae4.png?w=500", category: "fnb" },
-    { name: "일식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/48d60403268ac.png?w=500", category: "fnb" },
-    { name: "한식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/82b40f4c9e1b1.png?w=500", category: "fnb" },
-    { name: "중식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/6aeb0027cc392.png?w=500", category: "fnb" },
+    { id: "313", name: "패스트푸드", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/39dc52dde8dc2.png?w=500", category: "fnb" },
+    { id: "314", name: "디저트·카페", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/10d2ff07316a7.png?w=500", category: "fnb" },
+    { id: "312", name: "비건·건강식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/88af3c3edd787.png?w=500", category: "fnb" },
+    { id: "311", name: "아시안 푸드", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/8ab3728b880d1.png?w=500", category: "fnb" },
+    { id: "310", name: "주점·펍", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/797be1c3c8c3c.png?w=500", category: "fnb" },
+    { id: "309", name: "분식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/c14f1bd5ff3b9.png?w=500", category: "fnb" },
+    { id: "308", name: "양식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/b398f02bdaae4.png?w=500", category: "fnb" },
+    { id: "307", name: "일식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/48d60403268ac.png?w=500", category: "fnb" },
+    { id: "305", name: "한식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/82b40f4c9e1b1.png?w=500", category: "fnb" },
+    { id: "306", name: "중식", price: 103200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/6aeb0027cc392.png?w=500", category: "fnb" },
     // ── 교육 ──
-    { name: "학원", price: 115200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/91cb12cd80ff4.png?w=500", category: "edu" },
-    { name: "스터디카페", price: 117600, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/e67e2e3e143f2.png?w=500", category: "edu" },
+    { id: "326", name: "학원", price: 115200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/91cb12cd80ff4.png?w=500", category: "edu" },
+    { id: "98", name: "스터디카페", price: 117600, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/e67e2e3e143f2.png?w=500", category: "edu" },
     // ── 무인 ──
-    { name: "무인 빨래방", price: 92400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/37e4652ca5c4d.png?w=500", category: "unmanned" },
-    { name: "무인 소품샵", price: 92400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/8d2f401fd09eb.png?w=500", category: "unmanned" },
-    { name: "무인 편의점", price: 92400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/7b8277ead5f56.png?w=500", category: "unmanned" },
-    { name: "무인 스터디카페", price: 122400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/05694f5a5b135.png?w=500", category: "unmanned" },
-    { name: "무인 프린트카페", price: 92400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/cf58e3f0f299e.png?w=500", category: "unmanned" },
-    { name: "무인 카페", price: 92400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/2dd15de5ee34f.png?w=500", category: "unmanned" },
+    { id: "320", name: "무인 빨래방", price: 92400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/37e4652ca5c4d.png?w=500", category: "unmanned" },
+    { id: "319", name: "무인 소품샵", price: 92400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/8d2f401fd09eb.png?w=500", category: "unmanned" },
+    { id: "318", name: "무인 편의점", price: 92400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/7b8277ead5f56.png?w=500", category: "unmanned" },
+    { id: "317", name: "무인 스터디카페", price: 122400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/05694f5a5b135.png?w=500", category: "unmanned" },
+    { id: "316", name: "무인 프린트카페", price: 92400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/cf58e3f0f299e.png?w=500", category: "unmanned" },
+    { id: "315", name: "무인 카페", price: 92400, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/2dd15de5ee34f.png?w=500", category: "unmanned" },
     // ── 미용 ──
-    { name: "미용실", price: 112800, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/2fd5a9490c076.png?w=500", category: "beauty" },
-    { name: "속눈썹", price: 108000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/f27cb7bf24bb9.png?w=500", category: "beauty" },
-    { name: "반영구", price: 108000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/58a061ecb1cb4.png?w=500", category: "beauty" },
-    { name: "네일아트", price: 108000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/1fd7b2bd8196a.png?w=500", category: "beauty" },
-    { name: "피부관리·에스테틱", price: 108000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/03973fbc59d4d.png?w=500", category: "beauty" },
+    { id: "321", name: "미용실", price: 112800, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/2fd5a9490c076.png?w=500", category: "beauty" },
+    { id: "322", name: "속눈썹", price: 108000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/f27cb7bf24bb9.png?w=500", category: "beauty" },
+    { id: "323", name: "반영구", price: 108000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/58a061ecb1cb4.png?w=500", category: "beauty" },
+    { id: "324", name: "네일아트", price: 108000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/1fd7b2bd8196a.png?w=500", category: "beauty" },
+    { id: "325", name: "피부관리·에스테틱", price: 108000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/03973fbc59d4d.png?w=500", category: "beauty" },
     // ── 생활 ──
-    { name: "편의점", price: 114000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/962827397a9ec.png?w=500", category: "living" },
-    { name: "안경원", price: 96000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/ff7efc392b549.png?w=500", category: "living" },
+    { id: "336", name: "편의점", price: 114000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/962827397a9ec.png?w=500", category: "living" },
+    { id: "337", name: "안경원", price: 96000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/ff7efc392b549.png?w=500", category: "living" },
     // ── 숙박 ──
-    { name: "모텔", price: 126000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/6a068c8b88f25.png?w=500", category: "hotel" },
-    { name: "호텔", price: 126000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/0e0ef04248824.png?w=500", category: "hotel" },
+    { id: "327", name: "모텔", price: 126000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/6a068c8b88f25.png?w=500", category: "hotel" },
+    { id: "328", name: "호텔", price: 126000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/0e0ef04248824.png?w=500", category: "hotel" },
     // ── 스포츠 ──
-    { name: "헬스·피트니스", price: 96000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/1c24aaff06e86.png?w=500", category: "sports" },
-    { name: "스크린 골프", price: 114000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/7faca17c5c7c6.png?w=500", category: "sports" },
-    { name: "풋살·축구", price: 96000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/79ab22d01d879.png?w=500", category: "sports" },
-    { name: "하키", price: 96000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/9163ee0162401.png?w=500", category: "sports" },
+    { id: "95", name: "헬스·피트니스", price: 96000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/1c24aaff06e86.png?w=500", category: "sports" },
+    { id: "333", name: "스크린 골프", price: 114000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/7faca17c5c7c6.png?w=500", category: "sports" },
+    { id: "334", name: "풋살·축구", price: 96000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/79ab22d01d879.png?w=500", category: "sports" },
+    { id: "335", name: "하키", price: 96000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/9163ee0162401.png?w=500", category: "sports" },
     // ── 취미·여가 ──
-    { name: "키즈카페", price: 84000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/362d173b31257.png?w=500", category: "leisure" },
-    { name: "만화카페", price: 117600, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/65f7e66ed0cbd.png?w=500", category: "leisure" },
-    { name: "PC방", price: 112800, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/850fbb0ca3f8f.png?w=500", category: "leisure" },
-    { name: "방탈출", price: 115200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/7d95012cccd4f.png?w=500", category: "leisure" },
-    { name: "보드게임", price: 115200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/4d00c101ab043.png?w=500", category: "leisure" },
-    { name: "반려동물샵", price: 114000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/dfe31f4bbe50e.png?w=500", category: "leisure" },
+    { id: "96", name: "키즈카페", price: 84000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/362d173b31257.png?w=500", category: "leisure" },
+    { id: "97", name: "만화카페", price: 117600, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/65f7e66ed0cbd.png?w=500", category: "leisure" },
+    { id: "329", name: "PC방", price: 112800, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/850fbb0ca3f8f.png?w=500", category: "leisure" },
+    { id: "330", name: "방탈출", price: 115200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/7d95012cccd4f.png?w=500", category: "leisure" },
+    { id: "331", name: "보드게임", price: 115200, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/4d00c101ab043.png?w=500", category: "leisure" },
+    { id: "332", name: "반려동물샵", price: 114000, image: "https://cdn-optimized.imweb.me/upload/S202507314a1b355934b2a/dfe31f4bbe50e.png?w=500", category: "leisure" },
   ],
 
   caseStudies: [
